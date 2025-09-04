@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buggy Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    #calculator {
+      border: 2px solid #444;
+      padding: 20px;
+      border-radius: 10px;
+      width: 220px;
+      background: #f9f9f9;
+    }
+    input {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+      text-align: right;
+      font-size: 20px;
+    }
+    button {
+      width: 50px;
+      height: 50px;
+      font-size: 18px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Buggy Calculator 😅</h2>
+  <div id="calculator">
+    <input type="text" id="display" readonly>
+    <br>
+    <button onclick="press('1')">1</button>
+    <button onclick="press('2')">2</button>
+    <button onclick="press('3')">3</button>
+    <button onclick="press('+')">+</button>
+    <br>
+    <button onclick="press('4')">4</button>
+    <button onclick="press('5')">5</button>
+    <button onclick="press('6')">6</button>
+    <button onclick="press('-')">-</button>
+    <br>
+    <button onclick="press('7')">7</button>
+    <button onclick="press('8')">8</button>
+    <button onclick="press('9')">9</button>
+    <button onclick="press('*')">*</button>
+    <br>
+    <button onclick="press('0')">0</button>
+    <button onclick="press('.')">.</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="press('/')">/</button>
+    <br>
+    <button onclick="clearDisplay()" style="width: 100%">C</button>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+
+    function press(value) {
+      display.value += value;
+    }
+
+    function calculate() {
+      try {
+        // BUG 1: uses eval directly (unsafe & sloppy!)
+        let result = eval(display.value);
+
+        // BUG 2: wrong rounding logic, truncates instead of rounding properly
+        result = Math.floor(result * 100) / 100;
+
+        // BUG 3: sometimes show "Error" randomly
+        if (Math.random() < 0.1) {
+          throw new Error("Random bug appeared!");
+        }
+
+        display.value = result;
+      } catch (e) {
+        display.value = "Error";
+      }
+    }
+
+    function clearDisplay() {
+      display.value = "";
+    }
+  </script>
+</body>
+</html>
