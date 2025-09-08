@@ -21,4 +21,5 @@ Intended Bugs:
 
 - Calculator cannot handle floating numbers e.g. 2.999 + 1 = 2.99.
 - pressing = on an empty screen shows NaN/Error.
-- pressing equals takes adds 0.1 second to the time it takes to response.
+- pressing 9, actually inputs 6.
+- display error - slightly not aligned
