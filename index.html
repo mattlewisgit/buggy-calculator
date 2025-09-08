@@ -67,10 +67,9 @@
       background: #ff6666;
     }
 
-    /* Subtle UI error: slightly misalign the minus button */
-    .minus {
-      margin-top: 3px;   /* nudged down slightly */
-      width: 58px;       /* slightly narrower */
+    /* Make "2" button text bigger */
+    .two {
+      font-size: 26px;
     }
   </style>
 </head>
@@ -79,15 +78,15 @@
     <input type="text" id="display" readonly>
     <div class="buttons">
       <button onclick="press('1')">1</button>
-      <button onclick="press('2')">2</button>
+      <button class="two" onclick="press('2')">2</button>
       <button onclick="press('3')">3</button>
       <button onclick="press('+')">+</button>
 
       <button onclick="press('4')">4</button>
       <button onclick="press('5')">5</button>
       <button onclick="press('6')">6</button>
-      <!-- Subtle misalignment prank -->
-      <button class="minus" onclick="press('-')">-</button>
+      <!-- Minus button back to normal -->
+      <button onclick="press('-')">-</button>
 
       <button onclick="press('7')">7</button>
       <button onclick="press('8')">8</button>
@@ -112,12 +111,32 @@
     }
 
     function calculate() {
-      try {
-        let result = eval(display.value);
-        result = Math.floor(result * 100) / 100; // fixed syntax
-        display.value = result;
-      } catch (e) {
+      const expression = display.value;
+
+      // Error if decimal is used
+      if (expression.includes('.')) {
         display.value = "Error";
+        return;
+      }
+
+      // Check if any number has 3+ digits
+      const hasThreeDigit = /\d{3,}/.test(expression);
+
+      const runCalculation = () => {
+        try {
+          let result = eval(expression);
+          result = Math.floor(result * 100) / 100;
+          display.value = result;
+        } catch (e) {
+          display.value = "Error";
+        }
+      };
+
+      if (hasThreeDigit) {
+        display.value = "Calculating...";
+        setTimeout(runCalculation, 2000); // delay 2s
+      } else {
+        runCalculation();
       }
     }
 
