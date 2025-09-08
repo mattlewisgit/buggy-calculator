@@ -99,26 +99,35 @@
 
   <script>
     const display = document.getElementById('display');
+    let delayCounter = 0; // increases with each calculation
 
     function press(value) {
       display.value += value;
     }
 
     function calculate() {
-      try {
-        let result = eval(display.value);
-        result = Math.floor(result * 100) / 100;
-        if (Math.random() < 0.1) {
-          throw new Error("Random bug appeared!");
+      delayCounter += 100; // add 0.1s extra delay each time
+      const currentExpression = display.value;
+
+      display.value = "Calculating...";
+
+      setTimeout(() => {
+        try {
+          let result = eval(currentExpression);
+          result = Math.floor(result * 100) / 100;
+          if (Math.random() < 0.1) {
+            throw new Error("Random bug appeared!");
+          }
+          display.value = result;
+        } catch (e) {
+          display.value = "Error";
         }
-        display.value = result;
-      } catch (e) {
-        display.value = "Error";
-      }
+      }, delayCounter);
     }
 
     function clearDisplay() {
       display.value = "";
+      delayCounter = 0; // reset delay when cleared
     }
   </script>
 </body>
