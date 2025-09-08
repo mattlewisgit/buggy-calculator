@@ -69,8 +69,8 @@
 
     /* Subtle UI error: slightly misalign the minus button */
     .minus {
-      margin-top: 3px;       /* nudged down slightly */
-      width: 58px;           /* slightly narrower */
+      margin-top: 3px;   /* nudged down slightly */
+      width: 58px;       /* slightly narrower */
     }
   </style>
 </head>
@@ -114,4 +114,16 @@
     function calculate() {
       try {
         let result = eval(display.value);
-        result = Math.floor(result * 100) / 100;
+        result = Math.floor(result * 100) / 100; // fixed syntax
+        display.value = result;
+      } catch (e) {
+        display.value = "Error";
+      }
+    }
+
+    function clearDisplay() {
+      display.value = "";
+    }
+  </script>
+</body>
+</html>
