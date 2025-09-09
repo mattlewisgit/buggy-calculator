@@ -24,3 +24,5 @@ Intended Bugs:
 - pressing 9, actually inputs 6.
 - Any expression with 3+ digit numbers takes 2 seconds to show the result
 - Number 2 is slightly bigger than the rest.
+- Dividing by Zero equals INFINITY
+- You can select multiple decimal places
