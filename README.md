@@ -14,12 +14,13 @@ Acceptance Criteria
 3) Multipling numbers together works as expected
 4) Subtracting numbers together works as expected
 5) We do not see any unexpected behaviour from any other buttons
-6) We expect the calculator to response within an acceptance timeframe
+6) We expect the calculator to respond within miliseconds with the result of the calculation
 
 
 Intended Bugs:
 
-- Calculator cannot handle floating numbers e.g. 2.999 + 1 = 2.99.
+- Any calculation with decimal places will error.
 - pressing = on an empty screen shows NaN/Error.
 - pressing 9, actually inputs 6.
-- display error - slightly not aligned
+- Any expression with 3+ digit numbers takes 2 seconds to show the result
+- Number 2 is slightly bigger than the rest.
