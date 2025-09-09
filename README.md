@@ -11,10 +11,10 @@ Acceptance Criteria
 
 1) Adding numbers together works as expected
 2) Dividing numbers together works as expected
-3) Multipling numbers together works as expected
+3) Multiplying numbers together works as expected
 4) Subtracting numbers together works as expected
 5) We do not see any unexpected behaviour from any other buttons
-6) We expect the calculator to respond within miliseconds with the result of the calculation
+6) We expect the calculator to respond within milliseconds with the result of the calculation
 
 
 Intended Bugs:
